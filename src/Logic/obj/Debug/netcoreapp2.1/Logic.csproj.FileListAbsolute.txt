@@ -1,0 +1,10 @@
+D:\Training Project\cqrs-in-practice\10\demos\CqrsInPractice\Before\src\Logic\bin\Debug\netcoreapp2.1\Logic.deps.json
+D:\Training Project\cqrs-in-practice\10\demos\CqrsInPractice\Before\src\Logic\bin\Debug\netcoreapp2.1\Logic.dll
+D:\Training Project\cqrs-in-practice\10\demos\CqrsInPractice\Before\src\Logic\bin\Debug\netcoreapp2.1\Logic.pdb
+D:\Training Project\cqrs-in-practice\10\demos\CqrsInPractice\Before\src\Logic\obj\Debug\netcoreapp2.1\Logic.csproj.AssemblyReference.cache
+D:\Training Project\cqrs-in-practice\10\demos\CqrsInPractice\Before\src\Logic\obj\Debug\netcoreapp2.1\Logic.GeneratedMSBuildEditorConfig.editorconfig
+D:\Training Project\cqrs-in-practice\10\demos\CqrsInPractice\Before\src\Logic\obj\Debug\netcoreapp2.1\Logic.AssemblyInfoInputs.cache
+D:\Training Project\cqrs-in-practice\10\demos\CqrsInPractice\Before\src\Logic\obj\Debug\netcoreapp2.1\Logic.AssemblyInfo.cs
+D:\Training Project\cqrs-in-practice\10\demos\CqrsInPractice\Before\src\Logic\obj\Debug\netcoreapp2.1\Logic.csproj.CoreCompileInputs.cache
+D:\Training Project\cqrs-in-practice\10\demos\CqrsInPractice\Before\src\Logic\obj\Debug\netcoreapp2.1\Logic.dll
+D:\Training Project\cqrs-in-practice\10\demos\CqrsInPractice\Before\src\Logic\obj\Debug\netcoreapp2.1\Logic.pdb

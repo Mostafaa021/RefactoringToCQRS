@@ -1,0 +1,10 @@
+D:\Training Project\cqrs-in-practice\10\demos\CqrsInPractice\Before\src\UI\obj\Debug\UI.csproj.AssemblyReference.cache
+D:\Training Project\cqrs-in-practice\10\demos\CqrsInPractice\Before\src\UI\obj\Debug\UI.csprojResolveAssemblyReference.cache
+D:\Training Project\cqrs-in-practice\10\demos\CqrsInPractice\Before\src\UI\obj\Debug\App.baml
+D:\Training Project\cqrs-in-practice\10\demos\CqrsInPractice\Before\src\UI\obj\Debug\Common\CustomWindow.g.cs
+D:\Training Project\cqrs-in-practice\10\demos\CqrsInPractice\Before\src\UI\obj\Debug\Common\MainWindow.g.cs
+D:\Training Project\cqrs-in-practice\10\demos\CqrsInPractice\Before\src\UI\obj\Debug\MainWindow.g.cs
+D:\Training Project\cqrs-in-practice\10\demos\CqrsInPractice\Before\src\UI\obj\Debug\App.g.cs
+D:\Training Project\cqrs-in-practice\10\demos\CqrsInPractice\Before\src\UI\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\Training Project\cqrs-in-practice\10\demos\CqrsInPractice\Before\src\UI\obj\Debug\UI_MarkupCompile.cache
+D:\Training Project\cqrs-in-practice\10\demos\CqrsInPractice\Before\src\UI\obj\Debug\UI_MarkupCompile.lref
