@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Api.Dtos;
+using CSharpFunctionalExtensions;
 using Logic.Students;
 using Logic.Utils;
 using Microsoft.AspNetCore.Mvc;
@@ -23,7 +24,7 @@ namespace Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetList(string enrolled, int? number)
+        public IActionResult GetList(string enrolled, int? number) // query 
         {
             IReadOnlyList<Student> students = _studentRepository.GetList(enrolled, number);
             List<StudentDto> dtos = students.Select(student => ConvertToDto(student)).ToList();
@@ -47,7 +48,7 @@ namespace Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult Register([FromBody] NewStudentDto dto)
+        public IActionResult Register([FromBody] NewStudentDto dto) // Command
         {
             var student = new Student(dto.Name, dto.Email);
 
@@ -69,8 +70,8 @@ namespace Api.Controllers
             return Ok();
         }
 
-        [HttpDelete("{id}")]
-        public IActionResult Unregister(long id)
+        [HttpDelete("{id}")] 
+        public IActionResult Unregister(long id)// Command
         {
             Student student = _studentRepository.GetById(id);
             if (student == null)
@@ -82,8 +83,8 @@ namespace Api.Controllers
             return Ok();
         }
  
-        [HttpPost("{id}/enrollments")]
-        public IActionResult Enroll(long id ,[FromBody] StudentEnrollmentDto dto )
+        [HttpPost("{id}/enrollments")] // Command
+        public IActionResult Enroll(long id ,[FromBody] StudentEnrollmentDto dto )// Command
         {
            var student = _studentRepository.GetById(id);
             if (student == null)
@@ -102,8 +103,9 @@ namespace Api.Controllers
 
             return Ok();
         }
-        [HttpPost("{id}/enrollments/{enrollmentNumber}/deletion")]
-        public IActionResult DisEnroll(long id ,int enrollmentNumber , [FromBody] StudentDisEnrollDto dto )
+        [HttpPost("{id}/enrollments/{enrollmentNumber}/deletion")]// Command
+        public IActionResult DisEnroll(long id ,int enrollmentNumber , 
+            [FromBody] StudentDisEnrollDto dto ) // Command
         {
             var student = _studentRepository.GetById(id);
             if (student == null)
@@ -122,7 +124,8 @@ namespace Api.Controllers
         }
         
         [HttpPost("{id}/enrollments/{enrollmentNumber}")]
-        public IActionResult TransferStudent(long id , int enrollmentNumber,[FromBody] StudentTransfertDto dto )
+        public IActionResult TransferStudent(long id , int enrollmentNumber,
+            [FromBody] StudentTransfertDto dto )// Command
         {
             var student = _studentRepository.GetById(id);
             if (student == null)
@@ -147,18 +150,18 @@ namespace Api.Controllers
         }
         
         [HttpPost("{id}")]
-        public IActionResult EditPersonalInfo(long id ,[FromBody] StudentPersonalInfoDto dto )
+        public IActionResult EditPersonalInfo(long id ,[FromBody] StudentPersonalInfoDto dto ) //Command
         {
-            var student = _studentRepository.GetById(id);
-            if (student == null)
-                return Error($"No student found for Id {id}");
-
-            student.Name = dto.Name;
-            student.Email = dto.Email;
             
-            _unitOfWork.Commit();
-
-            return Ok();
+            var command = new EditPersonalInfoCommand()
+            {
+                Name = dto.Name,
+                Email = dto.Email ,
+                Id = id
+            };
+            var handler = new EditPersonalInfoCommandHandler(_unitOfWork);
+            Result result  =  handler.Handle(command);
+              return result.IsSuccess ? Ok() :  Error(result.Error);
         }
     }
 }

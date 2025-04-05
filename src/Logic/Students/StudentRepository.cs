@@ -27,12 +27,13 @@ namespace Logic.Students
                 query = query.Where(x => x.Enrollments.Any(e => e.Course.Name == enrolledIn));
                 
             }
-            List<Student> result = query.ToList(); // we casting data in memory here as filtering based on number of elements in DB
-                                                   // not supported in hibernate or EF core in one to many relation
+            List<Student> result = query.ToList(); 
 
             if (numberOfCourses != null)
             {
                 result = result.Where(x => x.Enrollments.Count == numberOfCourses).ToList();
+                // we casting data in memory here as filtering based on number of elements in DB
+                // not supported in hibernate or EF core in one-to-many relation
             }
 
             return result;
