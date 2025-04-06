@@ -1,4 +1,8 @@
-﻿using Api.Utils;
+﻿using System.Collections.Generic;
+using Api.Utils;
+using FluentNHibernate.Testing.Values;
+using Logic.Dtos;
+using Logic.Students;
 using Logic.Utils;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
@@ -20,7 +24,16 @@ namespace Api
             services.AddMvc();
 
             services.AddSingleton(new SessionFactory(Configuration["ConnectionString"]));
-            services.AddScoped<UnitOfWork>();
+            services.AddTransient<UnitOfWork>(); // version of this class hasn`t dispose method  so we use transient
+            services.AddSingleton<Messages>();
+            services.AddTransient<ICommandHandler<EditPersonalInfoCommand>, EditPersonalInfoCommandHandler>();            services.AddTransient<ICommandHandler<EditPersonalInfoCommand>, EditPersonalInfoCommandHandler>();
+            services.AddTransient<ICommandHandler<EnrollCommand>, EnrollCommandHandler>();
+            services.AddTransient<ICommandHandler<DisEnrollCommand>, DisEnrollCommandHandler>();
+            services.AddTransient<ICommandHandler<TransferCommand>, TransferCommandHandler>();
+            services.AddTransient<ICommandHandler<RegisterCommand>, RegisterCommandHandler>();
+            services.AddTransient<ICommandHandler<UnregisterCommand>, UnregisterCommandHandler>();
+            
+            services.AddTransient<IQueryHandler<GetListQuery,List<StudentDto>>, GetListQueryHandler>();
         }
 
         public void Configure(IApplicationBuilder app)
