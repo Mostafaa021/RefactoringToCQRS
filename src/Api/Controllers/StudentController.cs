@@ -13,22 +13,16 @@ namespace Api.Controllers
     [Route("api/students")]
     public sealed class StudentController : BaseController
     {
-        private readonly UnitOfWork _unitOfWork;
-        private readonly StudentRepository _studentRepository;
-        private readonly CourseRepository _courseRepository;
         private readonly Messages _messages;
 
-        public StudentController(UnitOfWork unitOfWork , Messages messages)
+        public StudentController( Messages messages)
             
         {
-            _unitOfWork = unitOfWork;
-            _studentRepository = new StudentRepository(unitOfWork);
-            _courseRepository = new CourseRepository(unitOfWork);
             _messages = messages;
         }
 
         [HttpGet]
-        public IActionResult GetList(string enrolled, int? number) // query 
+        public IActionResult GetList(string enrolled, int? number) 
         {
             List<StudentDto> students =  _messages.Dispatch( new GetListQuery(enrolled, number));
             return Ok(students);
@@ -36,43 +30,44 @@ namespace Api.Controllers
         
 
         [HttpPost]
-        public IActionResult Register([FromBody] NewStudentDto dto) // Command
+        public IActionResult Register([FromBody] NewStudentDto dto) 
         {
-            Result result = _messages.Dispatch(new RegisterCommand(
+            Result result = _messages.Dispatch(
+                new RegisterCommand(
                 dto.Name , dto.Email , dto.Course1 , dto.Course1Grade  , dto.Course2 , dto.Course2Grade)
             );
-            return result.IsSuccess ?  Ok() : Error(result.Error);
+            return FromResult(result);
         }
 
         [HttpDelete("{id}")] 
-        public IActionResult Unregister(long id)// Command
+        public IActionResult Unregister(long id)
         {
             Result result = _messages.Dispatch(new UnregisterCommand(id));
-            return result.IsSuccess ?  Ok() : Error(result.Error);
+            return FromResult(result);
         }
  
-        [HttpPost("{id}/enrollments")] // Command
-        public IActionResult Enroll(long id ,[FromBody] StudentEnrollmentDto dto )// Command
+        [HttpPost("{id}/enrollments")] 
+        public IActionResult Enroll(long id ,[FromBody] StudentEnrollmentDto dto )
         {
           Result result = _messages.Dispatch(new EnrollCommand(id , dto.Course , dto.Grade));
 
-            return result.IsSuccess ?  Ok() : Error(result.Error);
+          return FromResult(result);
         }
-        [HttpPost("{id}/enrollments/{enrollmentNumber}/deletion")]// Command
+        [HttpPost("{id}/enrollments/{enrollmentNumber}/deletion")]
         public IActionResult DisEnroll(long id ,int enrollmentNumber , 
-            [FromBody] StudentDisEnrollDto dto ) // Command
+            [FromBody] StudentDisEnrollDto dto ) 
         {
             Result result = _messages.Dispatch(new DisEnrollCommand(id , enrollmentNumber , dto.Comment));
 
-            return result.IsSuccess ?  Ok() : Error(result.Error);
+            return FromResult(result);
         }
         
         [HttpPost("{id}/enrollments/{enrollmentNumber}")]
         public IActionResult TransferStudent(long id , int enrollmentNumber,
-            [FromBody] StudentTransfertDto dto )// Command
+            [FromBody] StudentTransfertDto dto )
         {
             Result result = _messages.Dispatch(new TransferCommand(id , enrollmentNumber , dto.Course , dto.Grade));
-            return result.IsSuccess ?  Ok() : Error(result.Error);
+            return FromResult(result);
         }
         
         [HttpPost("{id}")]
@@ -84,7 +79,7 @@ namespace Api.Controllers
             var command = new EditPersonalInfoCommand(dto.Email, dto.Name, id);
     
            Result result =  _messages.Dispatch(command);
-            return result.IsSuccess ? Ok() :  Error(result.Error);
+           return FromResult(result);
         }
     }
 }
