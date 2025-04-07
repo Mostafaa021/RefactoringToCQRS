@@ -60,6 +60,19 @@
           }
         }
       },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/2.1.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.NETCore.App/2.1.0": {
         "type": "package",
         "dependencies": {
@@ -1170,6 +1183,19 @@
         "lib/netstandard1.0/Iesi.Collections.xml",
         "lib/netstandard1.3/Iesi.Collections.dll",
         "lib/netstandard1.3/Iesi.Collections.xml"
+      ]
+    },
+    "Microsoft.Extensions.DependencyInjection.Abstractions/2.1.1": {
+      "sha512": "MgYpU5cwZohUMKKg3sbPhvGG+eAZ/59E9UwPwlrUkyXU+PGzqwZg9yyQNjhxuAWmoNoFReoemeCku50prYSGzA==",
+      "type": "package",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/2.1.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+        "microsoft.extensions.dependencyinjection.abstractions.2.1.1.nupkg.sha512",
+        "microsoft.extensions.dependencyinjection.abstractions.nuspec"
       ]
     },
     "Microsoft.NETCore.App/2.1.0": {
@@ -3504,6 +3530,7 @@
     ".NETCoreApp,Version=v2.1": [
       "CSharpFunctionalExtensions >= 1.10.0",
       "FluentNHibernate >= 2.1.2",
+      "Microsoft.Extensions.DependencyInjection.Abstractions >= 2.1.1",
       "Microsoft.NETCore.App >= 2.1.0",
       "NHibernate >= 5.1.3",
       "Newtonsoft.Json >= 11.0.2"
@@ -3569,6 +3596,10 @@
           "FluentNHibernate": {
             "target": "Package",
             "version": "[2.1.2, )"
+          },
+          "Microsoft.Extensions.DependencyInjection.Abstractions": {
+            "target": "Package",
+            "version": "[2.1.1, )"
           },
           "Microsoft.NETCore.App": {
             "suppressParent": "All",
