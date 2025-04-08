@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
@@ -95,9 +95,9 @@ namespace Logic.Students
     {
         private readonly UnitOfWork _unitOfWork;
 
-        public EditPersonalInfoCommandHandler(UnitOfWork unitOfWork)
+        public EditPersonalInfoCommandHandler(SessionFactory sessionFactory)
         {
-            _unitOfWork = unitOfWork;
+            _unitOfWork = new UnitOfWork(sessionFactory);
         }
         public Result Handle(EditPersonalInfoCommand command)
         {
@@ -334,3 +334,4 @@ namespace Logic.Students
     #endregion
     #endregion
 }
+
