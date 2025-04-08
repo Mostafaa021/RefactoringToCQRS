@@ -4,6 +4,7 @@ using System.Linq;
 using Logic.Dtos;
 using CSharpFunctionalExtensions;
 using FluentNHibernate.Testing.Values;
+using Logic.AppServices;
 using Logic.Students;
 using Logic.Utils;
 using Microsoft.AspNetCore.Mvc;
