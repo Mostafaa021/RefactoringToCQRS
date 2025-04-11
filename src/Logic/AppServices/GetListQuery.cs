@@ -7,8 +7,8 @@ namespace Logic.Students
 {
     public sealed class GetListQuery : IQuery<List<StudentDto>>
     {
-        private string EnrolledIn { get;  }
-        private int? NumberOfCourses { get;  }
+        public string EnrolledIn { get;  }
+        public int? NumberOfCourses { get;  }
 
         public GetListQuery(string enrolledIn, int? numberOfCourses)
         {

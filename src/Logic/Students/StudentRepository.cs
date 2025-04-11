@@ -25,6 +25,8 @@ namespace Logic.Students
             if (!string.IsNullOrWhiteSpace(enrolledIn))
             {
                 query = query.Where(x => x.Enrollments.Any(e => e.Course.Name == enrolledIn));
+                // here we delegate filtering to LINQ provider not Extension method built on top of EF or NHibernate
+                
                 
             }
             List<Student> result = query.ToList(); 
@@ -32,8 +34,8 @@ namespace Logic.Students
             if (numberOfCourses != null)
             {
                 result = result.Where(x => x.Enrollments.Count == numberOfCourses).ToList();
-                // we casting data in memory here as filtering based on number of elements in DB
-                // not supported in hibernate or EF core in one-to-many relation
+                // ORM can`t filter by number of courses so we cast to List and filter in memory
+                
             }
 
             return result;

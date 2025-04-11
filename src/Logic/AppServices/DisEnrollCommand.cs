@@ -6,10 +6,9 @@ namespace Logic.Students
 {
     public sealed class DisEnrollCommand : ICommand
     {
-        public long Id { get;  }
-        public int EnrollmentNumber { get;  }
-        public string Comment { get;  }
-
+        private  long Id { get; }
+        private  int EnrollmentNumber { get;  }
+        private string Comment { get;  }
         public DisEnrollCommand(long id, int enrollmentNumber, string comment)
         {
             Id = id;
